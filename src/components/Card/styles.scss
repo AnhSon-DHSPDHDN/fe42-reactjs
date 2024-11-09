@@ -1,0 +1,18 @@
+.card-container {
+  width: 120px;
+  border:  1px solid gray;
+  padding: 5px;
+}
+
+.card-container-square {
+  width: 120px;
+  height: 120px;
+}
+
+.card-label {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+}
