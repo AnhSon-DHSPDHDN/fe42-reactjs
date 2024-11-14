@@ -1,7 +1,17 @@
+import { useState } from "react";
+import TradeCoinFuncComponent from "./components/TradeCoinFuncComponent";
+
 function App() {
+  const [isTrading, setIsTrading] = useState<boolean>(false);
+
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <div>
+        <button onClick={() => setIsTrading(!isTrading)}>
+          {isTrading ? "End" : "Start"} Trade
+        </button>
+      </div>
+      {isTrading && <TradeCoinFuncComponent />}
     </div>
   );
 }
