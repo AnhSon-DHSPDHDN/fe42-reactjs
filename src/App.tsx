@@ -1,7 +1,20 @@
+import { Spin } from "antd";
+import Header from "./components/Header";
+import "./App.css";
+import StudentManagement from "./components/StudentManagement";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <Header />
+      <div
+        style={{
+          padding: 10,
+        }}
+        className="management-container"
+      >
+        <StudentManagement />
+      </div>
     </div>
   );
 }
