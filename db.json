@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "SonTVA",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "username": "SonTVB",
+      "password": "654321"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "userId": 1,
+      "email": "a@gmail.com",
+      "fullName": "Tran Van Anh Son",
+      "phone": "0123456789"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "email": "a@gmail.com",
+      "fullName": "Tran Van Anh Son",
+      "phone": "0123456789"
+    }
+  ]
+}
