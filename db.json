@@ -1,0 +1,25 @@
+{
+  "students": [
+    {
+      "name": "SonTVA",
+      "age": "18",
+      "email": "a@gmail.com",
+      "id": "b349a1cb-4636-47fb-98e7-ece4889167f5",
+      "createAt": 1732196064767
+    },
+    {
+      "name": "SonB",
+      "age": "12",
+      "email": "a@gmail.com",
+      "id": "f956e9db-bb67-4002-acc1-79e4ac9adf4d",
+      "createAt": 1732196359616
+    },
+    {
+      "name": "SonE",
+      "age": "12",
+      "email": "a@gmail.com",
+      "id": "9a05a82e-da7c-4135-812a-54d415689852",
+      "createAt": 1732196502489
+    }
+  ]
+}

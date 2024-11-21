@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Form, Input, Modal, Row, Table, TableProps } from "antd";
+import {
+  Button,
+  Flex,
+  Form,
+  Input,
+  Modal,
+  Popconfirm,
+  Row,
+  Table,
+  TableProps,
+} from "antd";
 import { v4 as uuidv4 } from "uuid";
+import { StudentsApi } from "../../apis/students";
 
-type TStudent = {
+export type TStudent = {
   id: string;
   name: string;
   age: number;
@@ -12,19 +23,9 @@ type TStudent = {
 const StudentManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editStudent, setEditStudent] = useState<TStudent | null>(null);
-  const [students, setStudents] = useState<TStudent[]>(
-    JSON.parse(localStorage.getItem("students") || "[]")
-  );
+  const [students, setStudents] = useState<TStudent[]>([]);
 
   const [form] = Form.useForm();
-
-  const syncStudentToLocalStorage = () => {
-    localStorage.setItem("students", JSON.stringify(students));
-  };
-
-  useEffect(() => {
-    syncStudentToLocalStorage();
-  }, [students]);
 
   const handleOk = () => {
     form.submit();
@@ -59,13 +60,17 @@ const StudentManagement = () => {
             <Button type="primary" onClick={() => onClickEditStudent(record)}>
               Edit
             </Button>
-            <Button
-              color="danger"
-              variant="outlined"
-              onClick={() => handleDeleteStudent(record)}
+            <Popconfirm
+              title="Delete Student"
+              description="Are you sure to delete this Student?"
+              onConfirm={() => handleDeleteStudent(record)}
+              okText="Yes"
+              cancelText="No"
             >
-              Delete
-            </Button>
+              <Button color="danger" variant="outlined">
+                Delete
+              </Button>
+            </Popconfirm>
           </Flex>
         );
       },
@@ -78,32 +83,20 @@ const StudentManagement = () => {
     form.setFieldsValue(record);
   };
 
-  const handleDeleteStudent = (record: TStudent) => {
-    const newStudentsList = students.filter(
-      (_student) => _student.id !== record.id
-    );
-    setStudents(newStudentsList);
+  const handleDeleteStudent = async (record: TStudent) => {
+    await StudentsApi.deleteStudentById(record.id);
+    await fetchAllStudents();
   };
 
   const onClickAddStudent = () => {
     setIsModalOpen(true);
   };
 
-  const onFinish = (values: Omit<TStudent, "id">) => {
+  const onFinish = async (values: Omit<TStudent, "id">) => {
     if (editStudent) {
-      const _students = [...students];
-      const indexEdit = _students.findIndex(
-        (student) => student.id === editStudent.id
-      );
-
-      if (indexEdit > -1) {
-        _students[indexEdit] = {
-          ...values,
-          id: editStudent.id,
-        };
-
-        setStudents(_students);
-      }
+      // EDIT student
+      await StudentsApi.editStudentById(values, editStudent.id);
+      await fetchAllStudents();
 
       form.resetFields();
       setEditStudent(null);
@@ -111,14 +104,33 @@ const StudentManagement = () => {
       return;
     }
 
-    const newStudent: TStudent = {
+    // Add student
+    const payload: TStudent = {
       ...values,
       id: uuidv4(),
     };
-    setStudents([...students, newStudent]);
+    await StudentsApi.addStudent(payload);
+    await fetchAllStudents();
     form.resetFields(); // reset form
     setIsModalOpen(false);
   };
+
+  const fetchAllStudents = async (params: any = {}) => {
+    const defaultParams = {
+      _sort: "createAt", // sap xep theo ngay tao
+      _order: "desc", // sap xep giam dan
+    };
+
+    const data = await StudentsApi.getAllStudents({
+      ...defaultParams,
+      ...params,
+    });
+    setStudents(data);
+  };
+
+  useEffect(() => {
+    fetchAllStudents();
+  }, []);
 
   return (
     <div>
