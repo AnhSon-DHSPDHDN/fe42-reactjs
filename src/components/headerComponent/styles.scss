@@ -1,0 +1,16 @@
+.header-component {
+  background-color: rgb(12, 190, 249);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  .navigation {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+
+    &-item {
+      a {
+        color: black;
+      }
+    }
+  }
+}
