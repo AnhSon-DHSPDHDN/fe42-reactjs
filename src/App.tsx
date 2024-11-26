@@ -7,6 +7,7 @@ import HomeLayout from "./layouts/homeLayout";
 import AdminLayout from "./layouts/adminLayout";
 import AdminUsers from "./pages/admin/users/adminUsers";
 import AdminProduct from "./pages/admin/products/adminProduct";
+import ProductDetailPage from "./pages/productDetail/productDetail";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="product" element={<ProductPage />} />
+            <Route path="product/:productId" element={<ProductDetailPage />} />
             <Route path="login" element={<LoginPage />} />
           </Route>
 
