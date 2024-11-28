@@ -1,26 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
-export const products = [
-  {
-    id: "vf3",
-    img: "https://drive.gianhangvn.com/image/o9atv44-2623656j29995.jpg",
-    name: "Vinfast VF3",
-  },
-  {
-    id: "vf5",
-    img: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-red-white.png",
-    name: "Vinfast VF5",
-  },
-  {
-    id: "vf6",
-    img: "https://thanhnien.mediacdn.vn/Uploaded/chicuong/2022_11_18/vinfast-vf6-4-497.jpg",
-    name: "Vinfast VF6",
-  },
-];
+import { AppDispatch, RootState } from "../../redux/store";
+import { useEffect } from "react";
+import { actFetchProductById } from "../../redux/features/product/productSlice";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-  const product = products.find((_product) => _product.id === productId);
+  const product = useSelector((state: RootState) => state.product.product);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(actFetchProductById(productId as string));
+  }, []);
 
   if (!product) {
     return <h1>No product found</h1>;

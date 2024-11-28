@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "id": "vf3",
+      "img": "https://drive.gianhangvn.com/image/o9atv44-2623656j29995.jpg",
+      "name": "Vinfast VF3"
+    },
+    {
+      "id": "vf5",
+      "img": "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-red-white.png",
+      "name": "Vinfast VF5"
+    },
+    {
+      "id": "vf6",
+      "img": "https://thanhnien.mediacdn.vn/Uploaded/chicuong/2022_11_18/vinfast-vf6-4-497.jpg",
+      "name": "Vinfast VF6"
+    },
+    {
+      "id": "vf7",
+      "img": "https://thanhnien.mediacdn.vn/Uploaded/chicuong/2022_11_18/vinfast-vf6-4-497.jpg",
+      "name": "Vinfast VF7"
+    },
+    {
+      "id": "vf8",
+      "img": "https://thanhnien.mediacdn.vn/Uploaded/chicuong/2022_11_18/vinfast-vf6-4-497.jpg",
+      "name": "Vinfast VF8"
+    },
+    {
+      "id": "vf9",
+      "img": "https://thanhnien.mediacdn.vn/Uploaded/chicuong/2022_11_18/vinfast-vf6-4-497.jpg",
+      "name": "Vinfast VF9"
+    }
+  ]
+}
